@@ -1,0 +1,3 @@
+HEIGHT = 420
+WIDTH = 800
+FRAME_BG_COLOUR = '#cbc8c8'
