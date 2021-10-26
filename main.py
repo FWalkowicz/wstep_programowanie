@@ -1,32 +1,35 @@
 import tkinter as tk
+
+import settings
 from settings import *
 
-# root window
-root = tk.Tk()
 
-# prevent from resizing a window
-root.resizable(width=False, height=False)
+class App:
 
-canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
-canvas.pack()
+    def __init__(self, master):
+        self.master = master
+        self.master.resizable(width=False, height=False)  # prevent from resizing a window
+        self.canvas = tk.Canvas(self.master, height=HEIGHT, width=WIDTH)
+        self.frame = tk.Frame(self.master, bg=FRAME_BG_COLOUR)
+        self.label = tk.Label(self.master, text='Odblokuj bazę danych', font=24)
+        self.label3 = tk.Label(self.frame, text='Wprowadź hasło: ', bg=FRAME_BG_COLOUR)
+        self.entry = tk.Entry(self.frame)
+        self.label2 = tk.Label(self.master, text='© powered by Filip Walkowicz')
+        self.login_menu()
 
-frame = tk.Frame(root, bg=FRAME_BG_COLOUR)
-frame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+    def login_menu(self):
+        self.frame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+        self.label.place(relx=0.1, rely=0.2)
+        self.label3.place(relx=0.05, rely=0.1)
+        self.entry.place(relx=0.2, rely=0.1)
+        self.label2.pack()
+        self.canvas.pack()
 
-label = tk.Label(root, text='Odblokuj bazę danych', font=24)
-label.place(relx=0.1, rely=0.2)
+def initialization():
+    root = tk.Tk()
+    App(root)
+    root.mainloop()
 
-label3 = tk.Label(frame, text='Wprowadź hasło: ', bg=FRAME_BG_COLOUR)
-label3.place(relx=0.05, rely=0.1)
-
-entry = tk.Entry(frame)
-entry.place(relx=0.2, rely=0.1)
-
-label2 = tk.Label(root, text='© powered by Filip Walkowicz')
-label2.pack()
-
-passwd = input("password: ")
 
 if __name__ == "__main__":
-    # run an APP
-    root.mainloop()
+    initialization()
