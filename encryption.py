@@ -16,4 +16,4 @@ def encryption(passwd):
         backend=default_backend()
     )
     key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
-    print(key)
+    return key

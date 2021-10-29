@@ -14,3 +14,18 @@ try:
 
 except Error as e:
     print("there was some error with connecting", e)
+
+
+def login_db(login, passwd):
+    mycursor = database_connection.cursor()
+    query = "SELECT unique_key FROM login WHERE login = %s and password=%s"
+    data = (login, passwd)
+    mycursor.execute(query, data)
+    result = mycursor.fetchall()
+
+    for i in result:
+        print(result)
+
+
+
+

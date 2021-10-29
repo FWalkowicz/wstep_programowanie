@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from settings import *
 from encryption import *
+from database import *
 
 
 class App:
@@ -14,6 +15,8 @@ class App:
         self.label = tk.Label(self.master, text='Odblokuj bazę danych', font=24)
         self.label3 = tk.Label(self.frame, text='Wprowadź hasło: ', bg=FRAME_BG_COLOUR)
         self.entry = tk.Entry(self.frame, show='•')
+        self.label4 = tk.Label(self.frame, text='Wprowadź login: ', bg=FRAME_BG_COLOUR)
+        self.entry2 = tk.Entry(self.frame)
         self.label2 = tk.Label(self.master, text='© powered by Filip Walkowicz')
         self.button = tk.Button(self.frame, text='Submit', command=self.button_menu)
         self.login_menu()
@@ -21,15 +24,19 @@ class App:
     def login_menu(self):
         self.frame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
         self.label.place(relx=0.1, rely=0.2)
-        self.label3.place(relx=0.05, rely=0.1)
-        self.entry.place(relx=0.2, rely=0.1)
+        self.label4.place(relx=0.05, rely=0.1)
+        self.entry2.place(relx=0.2, rely=0.1)
+        self.label3.place(relx=0.05, rely=0.2)
         self.label2.place(relx=0.4, rely=0.85)
+        self.entry.place(relx=0.2, rely=0.2)
         self.canvas.pack()
-        self.button.place(relx=0.15, rely=0.2)
+        self.button.place(relx=0.05, rely=0.3)
 
     def button_menu(self):
         self.value = self.entry.get()
+        self.value2 = self.entry2.get()
         encryption(self.value)
+        login_db(self.value2, self.value)
 
 
 def initialization():
